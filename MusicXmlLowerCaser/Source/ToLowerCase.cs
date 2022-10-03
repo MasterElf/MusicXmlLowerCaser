@@ -8,7 +8,7 @@ namespace MusicXmlLowerCaser
 
     internal class ToLowerCase
     {
-        public static string Convert(string xmlText)
+        public static string Convert(string xmlText, OptionsModel options)
         {
             StringBuilder result = new StringBuilder();
 
@@ -22,7 +22,7 @@ namespace MusicXmlLowerCaser
                 {
                     if (!string.IsNullOrEmpty(line))
                     {
-                        result.AppendLine(Update(line));
+                        result.AppendLine(Update(line, options));
                     }
                 }
 
@@ -31,7 +31,7 @@ namespace MusicXmlLowerCaser
             return result.ToString();
         }
 
-        private static string Update(string line)
+        private static string Update(string line, OptionsModel options)
         {
             StringBuilder modifiedResult = new StringBuilder();
 
@@ -47,7 +47,7 @@ namespace MusicXmlLowerCaser
                 {
                     modifiedResult.Append(m.Groups[1].Value); // Part before "<text>"
                     modifiedResult.Append("<text>");
-                    modifiedResult.Append(CorrectCase(m.Groups[2].Value));
+                    modifiedResult.Append(Correct(m.Groups[2].Value, options));
                     modifiedResult.Append("</text>");
                     modifiedResult.Append(m.Groups[3].Value); // Part after "</text>"
                 }
@@ -61,7 +61,7 @@ namespace MusicXmlLowerCaser
             return modifiedResult.ToString();
         }
 
-        private static string CorrectCase(string uncorrected)
+        private static string Correct(string uncorrected, OptionsModel options)
         {
             StringBuilder modifiedResult = new StringBuilder();
 
@@ -72,7 +72,7 @@ namespace MusicXmlLowerCaser
             }
             else
             {
-                modifiedResult.Append (uncorrected);
+                modifiedResult.Append(uncorrected);
             }
 
             return modifiedResult.ToString();

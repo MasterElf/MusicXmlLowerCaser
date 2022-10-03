@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:MusicXmlLowerCaser"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Do it!" Click="Button_Click"/>
-    </Grid>
+    <DockPanel>
+        <Button DockPanel.Dock="Top" Content="Do it!" Click="Button_Click"/>
+        <CheckBox DockPanel.Dock="Top" Content="Initial uppercase" IsChecked="{Binding InitialUppercase}" />
+        <CheckBox DockPanel.Dock="Top" Content="Assert trailing space" IsChecked="{Binding AssertTrailingSpace}" />
+    </DockPanel>
 </Window>
