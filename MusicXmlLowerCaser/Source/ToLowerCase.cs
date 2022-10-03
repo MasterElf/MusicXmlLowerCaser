@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace MusicXmlLowerCaser
@@ -47,7 +46,7 @@ namespace MusicXmlLowerCaser
                 {
                     modifiedResult.Append(m.Groups[1].Value); // Part before "<text>"
                     modifiedResult.Append("<text>");
-                    modifiedResult.Append(Correct(m.Groups[2].Value, options));
+                    modifiedResult.Append(CorrectText(m.Groups[2].Value, options));
                     modifiedResult.Append("</text>");
                     modifiedResult.Append(m.Groups[3].Value); // Part after "</text>"
                 }
@@ -61,14 +60,25 @@ namespace MusicXmlLowerCaser
             return modifiedResult.ToString();
         }
 
-        private static string Correct(string uncorrected, OptionsModel options)
+        private static string CorrectText(string uncorrected, OptionsModel options)
         {
             StringBuilder modifiedResult = new StringBuilder();
 
-            if (!string.IsNullOrEmpty (uncorrected) && uncorrected.Length > 1)
+            if (!string.IsNullOrEmpty(uncorrected))
             {
-                modifiedResult.Append(uncorrected[0]);
-                modifiedResult.Append(uncorrected.Substring(1).ToLower());
+                string text = uncorrected;
+
+                if (options.InitialUppercase)
+                {
+                    text = MakeInitialUpperCase(text);
+                }
+
+                if (options.AssertTrailingSpace)
+                {
+                    text = AssertTrailingSpace(text);
+                }
+
+                modifiedResult.Append(text);
             }
             else
             {
@@ -76,6 +86,26 @@ namespace MusicXmlLowerCaser
             }
 
             return modifiedResult.ToString();
+        }
+
+        private static string MakeInitialUpperCase(string text)
+        {
+            if (!string.IsNullOrEmpty(text) && text.Length > 1)
+            {
+                return text[0].ToString().ToUpper() + text[1..].ToLower();
+            }
+
+            return text;
+        }
+
+        private static string AssertTrailingSpace(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                return text.TrimEnd() + ' ';
+            }
+
+            return text;
         }
     }
 }

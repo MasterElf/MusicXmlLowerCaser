@@ -6,9 +6,20 @@
         xmlns:local="clr-namespace:MusicXmlLowerCaser"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
+    <DockPanel LastChildFill="False">
         <Button DockPanel.Dock="Top" Content="Do it!" Click="Button_Click"/>
         <CheckBox DockPanel.Dock="Top" Content="Initial uppercase" IsChecked="{Binding InitialUppercase}" />
         <CheckBox DockPanel.Dock="Top" Content="Assert trailing space" IsChecked="{Binding AssertTrailingSpace}" />
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Input file path" />
+            <TextBox MinWidth="50" Text="{Binding InputFile}" />
+            <Button Content="Find..." Click="InputFilePathButton_Click" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="Output file name" />
+            <TextBox MinWidth="50" Text="{Binding OutputFileName}" />
+        </StackPanel>
     </DockPanel>
 </Window>
