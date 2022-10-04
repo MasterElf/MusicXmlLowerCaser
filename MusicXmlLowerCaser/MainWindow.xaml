@@ -10,6 +10,7 @@
         <Button DockPanel.Dock="Top" Content="Do it!" Click="Button_Click"/>
         <CheckBox DockPanel.Dock="Top" Content="Initial uppercase" IsChecked="{Binding InitialUppercase}" />
         <CheckBox DockPanel.Dock="Top" Content="Assert trailing space" IsChecked="{Binding AssertTrailingSpace}" />
+        <CheckBox DockPanel.Dock="Top" Content="Set all channels to one" IsChecked="{Binding SetAllChannelsToOne}" />
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Text="Input file path" />

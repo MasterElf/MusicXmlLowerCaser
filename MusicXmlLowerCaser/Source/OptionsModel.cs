@@ -44,5 +44,13 @@ namespace MusicXmlLowerCaser
             get => assertTrailingSpace;
             set => SetProperty(ref assertTrailingSpace, value);
         }
+
+        private bool setAllChannelsToOne = true;
+
+        public bool SetAllChannelsToOne
+        {
+            get => setAllChannelsToOne;
+            set => SetProperty(ref setAllChannelsToOne, value);
+        }
     }
 }

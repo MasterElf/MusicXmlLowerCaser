@@ -28,7 +28,7 @@ namespace MusicXmlLowerCaser
                 string originalContent = File.ReadAllText(optionsModel.InputFile);
 
                 // Modify content
-                string modifiedContent = ToLowerCase.Convert(originalContent, optionsModel);
+                string modifiedContent = Modifier.Convert(originalContent, optionsModel);
 
                 // Save a copy
                 string? outputDirectoryName = Path.GetDirectoryName(optionsModel.InputFile);
